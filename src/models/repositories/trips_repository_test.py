@@ -20,7 +20,6 @@ def test_create_trip():
         "owner_name": "Gianlucca",
         "owner_email": "gianboghi@hotmail.com"
     }
-
     trips_repository.create_trip(trips_infos)
 
 @pytest.mark.skip(reason="interacao com o banco")
