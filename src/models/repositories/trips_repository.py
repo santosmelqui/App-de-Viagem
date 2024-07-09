@@ -10,11 +10,11 @@ class TripsRepository:
         cursor.execute(
             '''
                 INSERT INTO trips
-                    (ID, destination, start_date, end_date, owner_name, owner_email)
+                    (id, destination, start_date, end_date, owner_name, owner_email)
                 Values
                     (?, ?, ?, ?, ?, ?)
             ''', (
-                trips_infos["ID"],
+                trips_infos["id"],
                 trips_infos["destionation"],
                 trips_infos["start_date"],
                 trips_infos["end_date"],

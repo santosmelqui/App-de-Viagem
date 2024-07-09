@@ -1,4 +1,4 @@
-import pytest
+import pytest #type: ignore
 import uuid
 from datetime import datetime, timedelta
 from .trips_repository import TripsRepository
@@ -7,19 +7,20 @@ from src.models.settings.db_connection_handler import db_connection_handler
 db_connection_handler.connect()
 trip_id = str(uuid.uuid4())
 
-@pytest.mark.skip(reason="inracao com o banco")
+@pytest.mark.skip(reason="interacao com o banco")
 def test_create_trip():
     conn = db_connection_handler.get_connection()
     trips_repository = TripsRepository(conn)
 
     trips_infos = {
-        "ID": trip_id,
-        "destionation": "Osasco",
+        "id": trip_id,
+        "destination": "Osasco",
         "start_date": datetime.strptime("02-01-2024", "%d-%m-%Y"),
-        "end_date": datetime.strptime ("02-01-2024", "%d-%m-%Y") + timedelta(days=5),
-        "owner_name": "Osvaldo",
-        "owner_email": "osvaldo@email.com"
+        "end_date": datetime.strptime("02-01-2024", "%d-%m-%Y") + timedelta (days=5),
+        "owner_name": "Gianlucca",
+        "owner_email": "gianboghi@hotmail.com"
     }
+
     trips_repository.create_trip(trips_infos)
 
 @pytest.mark.skip(reason="interacao com o banco")
@@ -29,11 +30,6 @@ def test_find_trip_by_id():
 
     trip = trips_repository.find_trip_by_id(trip_id)
     print(trip)
-    
-@pytest.mark.skip(reason="interacao com o banco")
-def test_find_trip_by_id():
-    conn = db_connection_handler.get_connection()
-    trips_repository = TripsRepository(conn)
 
 @pytest.mark.skip(reason="interacao com o banco")
 def test_update_trip_status():
