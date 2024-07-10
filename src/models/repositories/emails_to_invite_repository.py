@@ -26,5 +26,5 @@ class EmailsToInviteRepository:
         cursor.execute(
             '''SELECT * FROM emails_to_invite Where trip_id = ?''', (trip_id,)
         )
-        trip = cursor.fetchone()
-        return trip
+        emails = cursor.fetchone()
+        return emails
