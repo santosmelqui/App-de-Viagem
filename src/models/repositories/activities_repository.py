@@ -5,28 +5,27 @@ class ActivitiesRepository:
     def __init__(self, conn: Connection) -> None:
         self.__conn = conn
 
-    def registry_activitiy(self, activity_infos: dict) -> None:
+    def registry_activity(self, activity_infos: Dict) -> None:
         cursor = self.__conn.cursor()
         cursor.execute(
             '''
                 INSERT INTO activities
                     (id, trip_id, title, occurs_at)
                 Values
-                    (?, ?, ?)
+                    (?, ?, ?, ?)
             ''', (
                 activity_infos["id"],
                 activity_infos["trip_id"],
                 activity_infos["title"],
-                activity_infos["occurs_at"]
-
+                activity_infos["occurs_at"],
             )
         )
         self.__conn.commit()
 
-    def find_acitivities_from_trip(self, trip_id: str) -> List[Tuple]:
+    def find_activities_from_trip(self, trip_id: str) -> List[Tuple]:
         cursor = self.__conn.cursor()
         cursor.execute(
-            '''SELECT * FROM activities Where trip_id = ?''', (trip_id,)
+            '''SELECT * FROM activities WHERE trip_id = ?''', (trip_id,)
         )
-        activities = cursor.fetchone()
+        activities = cursor.fetchall()
         return activities
